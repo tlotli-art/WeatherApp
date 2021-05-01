@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>weather</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container-fluid mt-0 px-0">
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://source.unsplash.com/1900x500/?nature,africa" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <center>
+                        <h3>Tlotli's Current Weather Forecast</h3>
+                        <form method="post" class="col-md-6 col-md-offset-3">
+                            {% csrf_token %}
+                            <div class="input-group">
+                              <input type="text" class="form-control" name="city" placeholder="Enter City">
+                              <div class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                  <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                              </div>
+                              <form>
+                    </center>
+                    <br>
+                    <br>
+                    <br>
+                    <center>
+                    <h3>City: {{city}} {{country_code}}</h3>
+                    <h5>Longitude: {{long}}</h5>
+                    <h5>Latitude: {{lat}}</h5>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        {% if temperature and pressure and humidity %}
+        <div class="col-sm-3">
+            <div class="card">
+                <center>
+                    <h5>temperature</h5>
+                    <img src="{% static 'images/temperature.png' %}" width="70" height="70" alt="">
+                    <h3>{{temperature}}</h3>
+                </center>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card">
+                    <center>
+                        <h5>Pressure</h5>
+                        <img src="{% static 'images/pressure.jpg' %}" width="70" height="70" alt="">
+                        <h3>{{pressure}} hPa</h3>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card">
+                    <center>
+                        <h5>Humidity</h5>
+                        <img src="{% static 'images/humidity.png' %}" width="70" height="70" alt="">
+                        <h3>{{humidity}}%</h3>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card">
+                    <center>
+                        <h5>Air Quality</h5>
+                        <img src="{% static 'images/air.png' %}" width="70" height="70" alt="">
+                        <h3>{{air}}</h3>
+                    </center>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+    
+
+</body>
+
+</html>
